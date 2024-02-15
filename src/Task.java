@@ -1,27 +1,22 @@
 public class Task {
-   private String taskName;
+   private String name;
     private String description;
     private int id;
     private  TaskStatus status;
 
-    public Task(String taskName, String description, TaskStatus status) {
-        this.taskName = taskName;
-        this.description = description;
-        this.status = status;
-    }
-
     public Task(String taskName, String description, int id, TaskStatus status) {
-        this.taskName = taskName;
+        this.name = taskName;
         this.description = description;
         this.id = id;
         this.status = status;
     }
-    public String getTaskName() {
-        return taskName;
+
+    public String getName() {
+        return name;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -51,12 +46,10 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "taskName='" + taskName + '\'' +
+                "taskName='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", id=" + id +
                 ", status=" + status +
                 '}';
     }
 }
-
-
