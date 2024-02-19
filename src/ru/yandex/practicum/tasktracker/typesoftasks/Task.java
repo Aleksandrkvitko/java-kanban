@@ -1,8 +1,12 @@
+package ru.yandex.practicum.tasktracker.typesoftasks;
+
+import ru.yandex.practicum.tasktracker.status.TaskStatus;
+
 public class Task {
    private String name;
     private String description;
     private int id;
-    private  TaskStatus status;
+    private TaskStatus status;
 
     public Task(String taskName, String description, int id, TaskStatus status) {
         this.name = taskName;

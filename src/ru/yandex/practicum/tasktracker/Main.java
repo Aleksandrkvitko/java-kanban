@@ -1,10 +1,18 @@
+package ru.yandex.practicum.tasktracker;
+
+import ru.yandex.practicum.tasktracker.realization.TaskManager;
+import ru.yandex.practicum.tasktracker.status.TaskStatus;
+import ru.yandex.practicum.tasktracker.typesoftasks.Epic;
+import ru.yandex.practicum.tasktracker.typesoftasks.Subtask;
+import ru.yandex.practicum.tasktracker.typesoftasks.Task;
+
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
-        Epic epic1 = new Epic("epic1","epic1",1,TaskStatus.NEW,new ArrayList<>());
+        Epic epic1 = new Epic("epic1","epic1",1, TaskStatus.NEW,new ArrayList<>());
         Epic epic2 = new Epic("epic2","epic2",2,TaskStatus.NEW,new ArrayList<>());
 
         Subtask subtask1 =new Subtask("subtask1","subtask1",3,TaskStatus.NEW,epic1);
@@ -30,7 +38,13 @@ public class Main {
         System.out.println("subtask");
 
         System.out.println("  ");
-        for (Task task : taskManager.getAllTask()) {
+        for (Task task : taskManager.getTasks()) {
+            System.out.println(task);
+        }
+        for (Subtask task : taskManager.getSubtasks()) {
+            System.out.println(task);
+        }
+        for (Epic task : taskManager.getEpics()) {
             System.out.println(task);
         }
     }

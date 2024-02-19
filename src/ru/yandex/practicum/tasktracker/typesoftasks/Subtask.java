@@ -1,16 +1,19 @@
+package ru.yandex.practicum.tasktracker.typesoftasks;
+
+import ru.yandex.practicum.tasktracker.status.TaskStatus;
+
 public class Subtask extends Task{
     private  Epic epic;
 
+    public Subtask(String taskName, String description, int id, TaskStatus status, Epic epic) {
+        super(taskName, description, id, status);
+        this.epic = epic;
+    }
     public Epic getEpic() {
         return epic;
     }
 
     public void setEpic(Epic epic) {
-        this.epic = epic;
-    }
-
-    public Subtask(String taskName, String description, int id, TaskStatus status, Epic epic) {
-        super(taskName, description, id, status);
         this.epic = epic;
     }
 
