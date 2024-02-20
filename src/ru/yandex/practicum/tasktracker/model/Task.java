@@ -1,9 +1,7 @@
-package ru.yandex.practicum.tasktracker.typesoftasks;
-
-import ru.yandex.practicum.tasktracker.status.TaskStatus;
+package ru.yandex.practicum.tasktracker.model;
 
 public class Task {
-   private String name;
+    private String name;
     private String description;
     private int id;
     private TaskStatus status;

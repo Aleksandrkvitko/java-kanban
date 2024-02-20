@@ -1,8 +1,8 @@
-package ru.yandex.practicum.tasktracker.realization;
+package ru.yandex.practicum.tasktracker.manager;
 
-import ru.yandex.practicum.tasktracker.typesoftasks.Epic;
-import ru.yandex.practicum.tasktracker.typesoftasks.Subtask;
-import ru.yandex.practicum.tasktracker.typesoftasks.Task;
+import ru.yandex.practicum.tasktracker.model.Epic;
+import ru.yandex.practicum.tasktracker.model.Subtask;
+import ru.yandex.practicum.tasktracker.model.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,6 @@ public class TaskManager {
     private final HashMap<Integer, Task> tasks = new HashMap<>();
     private final HashMap<Integer, Epic> epics = new HashMap<>();
     private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
-
 
     public void addTask(Task task) {
         tasks.put(task.getId(), task);
@@ -37,20 +36,22 @@ public class TaskManager {
     public ArrayList<Subtask> getSubtasks() {
         return new ArrayList<>(subtasks.values());
     }
-      /*Пожалуйста, должны быть методы для каждого типа задач - getTasks, getEpics, getSubtasks
-    При этом метода чтобы получить все задачи вообще быть не должно
-            (Возможно, удобнее будет сделать хэшмапы для каждого типа задач)*/
+
     public void removeTasks() {
         tasks.clear();
     }
-   /* То же, нужны методы для каждого типа задач (и для двух методов ниже)*/
 
     public void removeEpics() {
         epics.clear();
+        removeSubtasks();
     }
 
     public void removeSubtasks() {
         subtasks.clear();
+        for (Epic epic : getEpics()) {
+            epic.getSubtasks().clear();
+            updateEpic(epic);
+        }
     }
 
     public void removeTaskById(Integer id) {
@@ -58,10 +59,19 @@ public class TaskManager {
     }
 
     public void removeEpicById(Integer id) {
+        Epic epicRemove = getEpic(id);
+        ArrayList<Subtask> temp = epicRemove.getSubtasks();
+        for (int i = 0; i < temp.size(); i++) {
+            subtasks.remove(epicRemove.getSubtasks().get(i).getId());
+        }
         epics.remove(id);
     }
 
     public void removeSubtask(Integer id) {
+        Subtask subtaskRemove = getSubtask(id);
+        Epic epic = subtaskRemove.getEpic();
+        epic.getSubtasks().remove(subtaskRemove);
+        epic.setStatus(epic.getStatus(epic));
         subtasks.remove(id);
     }
 
@@ -70,12 +80,13 @@ public class TaskManager {
     }
 
     public Epic getEpic(Integer id) {
-         return epics.get(id);
+        return epics.get(id);
     }
 
     public Subtask getSubtask(Integer id) {
         return subtasks.get(id);
     }
+
     public void updateSubtask(Subtask subtask) {
         subtasks.put(subtask.getId(), subtask);
         Epic epic = getEpic(subtask.getEpic().getId());

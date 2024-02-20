@@ -1,10 +1,10 @@
 package ru.yandex.practicum.tasktracker;
 
-import ru.yandex.practicum.tasktracker.realization.TaskManager;
-import ru.yandex.practicum.tasktracker.status.TaskStatus;
-import ru.yandex.practicum.tasktracker.typesoftasks.Epic;
-import ru.yandex.practicum.tasktracker.typesoftasks.Subtask;
-import ru.yandex.practicum.tasktracker.typesoftasks.Task;
+import ru.yandex.practicum.tasktracker.manager.TaskManager;
+import ru.yandex.practicum.tasktracker.model.TaskStatus;
+import ru.yandex.practicum.tasktracker.model.Epic;
+import ru.yandex.practicum.tasktracker.model.Subtask;
+import ru.yandex.practicum.tasktracker.model.Task;
 
 import java.util.ArrayList;
 
@@ -36,8 +36,20 @@ public class Main {
         Subtask subtask4 = new Subtask("subtask2","subtask2",4,TaskStatus.DONE,epic1);
         taskManager.updateSubtask(subtask4);
         System.out.println("subtask");
+        System.out.println();
+        for (Task task : taskManager.getTasks()) {
+            System.out.println(task);
+        }
+        for (Subtask task : taskManager.getSubtasks()) {
+            System.out.println(task);
+        }
+        for (Epic task : taskManager.getEpics()) {
+            System.out.println(task);
+        }
 
-        System.out.println("  ");
+        taskManager.removeTaskById(6);
+        taskManager.removeEpicById(1);
+        System.out.println();
         for (Task task : taskManager.getTasks()) {
             System.out.println(task);
         }

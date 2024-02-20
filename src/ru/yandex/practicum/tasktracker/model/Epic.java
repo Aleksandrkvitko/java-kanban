@@ -1,6 +1,4 @@
-package ru.yandex.practicum.tasktracker.typesoftasks;
-
-import ru.yandex.practicum.tasktracker.status.TaskStatus;
+package ru.yandex.practicum.tasktracker.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,6 @@ public class Epic extends Task {
     public void setSubtasks(ArrayList<Subtask> subtasks) {
         this.subtasks = subtasks;
     }
-
 
     public TaskStatus getStatus(Epic epic){
         List<Subtask> subtasks = epic.getSubtasks();

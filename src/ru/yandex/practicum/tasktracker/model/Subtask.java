@@ -1,6 +1,4 @@
-package ru.yandex.practicum.tasktracker.typesoftasks;
-
-import ru.yandex.practicum.tasktracker.status.TaskStatus;
+package ru.yandex.practicum.tasktracker.model;
 
 public class Subtask extends Task{
     private  Epic epic;
@@ -9,6 +7,7 @@ public class Subtask extends Task{
         super(taskName, description, id, status);
         this.epic = epic;
     }
+
     public Epic getEpic() {
         return epic;
     }
